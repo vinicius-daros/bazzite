@@ -40,8 +40,8 @@ on:
         description: 'Clear rechunk history'
         type: boolean
         default: false
-# env:
-  # IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+env:
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
@@ -128,12 +128,12 @@ jobs:
       #     pubkey: https://raw.githubusercontent.com/ublue-os/akmods/main/cosign.pub
       #     registry: ${{ env.IMAGE_REGISTRY }}
 
-      - name: Verify akmods-nvidia image
-        uses: EyeCantCU/cosign-action/verify@v0.3.0
-        with:
-          containers: akmods-${{ matrix.target_nvidia_flavor }}:${{ matrix.kernel_flavor}}-${{ matrix.fedora_version }}-${{ matrix.kernel_version }}
-          pubkey: https://raw.githubusercontent.com/ublue-os/akmods/main/cosign.pub
-          registry: ${{ env.IMAGE_REGISTRY }}
+      # - name: Verify akmods-nvidia image
+      #   uses: EyeCantCU/cosign-action/verify@v0.3.0
+      #   with:
+      #     containers: akmods-${{ matrix.target_nvidia_flavor }}:${{ matrix.kernel_flavor}}-${{ matrix.fedora_version }}-${{ matrix.kernel_version }}
+      #     pubkey: https://raw.githubusercontent.com/ublue-os/akmods/main/cosign.pub
+      #     registry: ${{ env.IMAGE_REGISTRY }}
 
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
